@@ -120,20 +120,70 @@ namespace TextRPG
             }
         }
 
-        static void EnterField()
+        static void Fight(ref Player player, ref Monster monster)
         {
-            Console.WriteLine("필드에 접속했습니다!");
+            while(true)
+            {
+                // 플레이어가 몬스터 공격
+                monster.hp -= player.attack;
 
-            // 몬스터 생성
-            Monster monster;
+                if(monster.hp <=0)
+                {
+                    Console.WriteLine("승리했습니다!\n");
+                    Console.WriteLine($"남은 체력 {player.hp}\n");
+                    break;
+                }
 
-            CreateRandomMonster(out monster);
+                // 몬스터 반격
+                player.hp -= monster.attack;
 
-            Console.WriteLine("[1] 전투 모드로 돌입");
-            Console.WriteLine("[2] 일정 확률로 마을로 도망");
+                if (player.hp <= 0)
+                {
+                    Console.WriteLine("패배했습니다!\n");
+                    break;
+                }
+            }
         }
 
-        static void EnterGame()
+        static void EnterField(ref Player player)
+        {
+            while (true)
+            {
+                Console.WriteLine("필드에 접속했습니다!");
+
+                // 몬스터 생성
+                Monster monster;
+
+                CreateRandomMonster(out monster);
+
+                Console.WriteLine("[1] 전투 모드로 돌입");
+                Console.WriteLine("[2] 일정 확률로 마을로 도망");
+
+                string input = Console.ReadLine();
+                if (input == "1")
+                {
+                    Fight(ref player, ref monster);
+                }
+                else if (input == "2")
+                {
+                    // 33%
+                    Random rand = new Random();
+                    int randValue = rand.Next(0, 101);
+
+                    if (randValue <= 33)
+                    {
+                        Console.WriteLine("도망치는데 성공했습니다!");
+                        break;
+                    }
+                    else
+                    {
+                        Fight(ref player, ref monster);
+                    }
+                }
+            }
+        }
+
+        static void EnterGame(ref Player player)
         {
             while(true)
             {
@@ -145,7 +195,7 @@ namespace TextRPG
 
                 if(input =="1")
                 {
-                    EnterField();
+                    EnterField(ref player);
                 }
                 else if(input=="2")
                 {
@@ -159,19 +209,18 @@ namespace TextRPG
             while(true)
             {
                 ClassType choice = ChooseClass();
-                if (choice != ClassType.None)
-                {
-                    // 캐릭터 생성
-                    Player player;
+                if (choice == ClassType.None)
+                    continue;
 
-                    CreatePlayer(choice, out player);
+                // 캐릭터 생성
+                Player player;
 
-                    Console.WriteLine($"HP{player.hp} Attack{player.attack}\n");
+                CreatePlayer(choice, out player);
 
-                    // 필드로 가서 몬스터랑 싸운다
-                    EnterGame();
+                Console.WriteLine($"HP{player.hp} Attack{player.attack}\n");
 
-                }
+                // 필드로 가서 몬스터랑 싸운다
+                EnterGame(ref player);
             }
         }
     }
