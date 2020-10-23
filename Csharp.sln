@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextRPG", "TextRPG\TextRPG.csproj", "{AE47E473-8FA9-4626-87A3-B56724189A4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextRPG", "TextRPG\TextRPG.csproj", "{AE47E473-8FA9-4626-87A3-B56724189A4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP", "OOP\OOP.csproj", "{83B30A2B-6E96-4084-973D-D54CDC3E57D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{AE47E473-8FA9-4626-87A3-B56724189A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE47E473-8FA9-4626-87A3-B56724189A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE47E473-8FA9-4626-87A3-B56724189A4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83B30A2B-6E96-4084-973D-D54CDC3E57D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83B30A2B-6E96-4084-973D-D54CDC3E57D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83B30A2B-6E96-4084-973D-D54CDC3E57D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83B30A2B-6E96-4084-973D-D54CDC3E57D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
