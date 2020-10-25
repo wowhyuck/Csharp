@@ -11,6 +11,10 @@ namespace OOP
     // Ref 참조
     class Knight
     {
+        // 필드
+        static public int counter = 1;        // 오로지 1개만 존재!
+
+        public int id;
         public int hp;
         public int attack;
 
@@ -22,24 +26,27 @@ namespace OOP
             return knight;
         }
 
+        static public void Test()
+        {
+            counter++;
+        }
+
+        static public Knight CreateKnight()
+        {
+            Knight knight = new Knight();
+            knight.hp = 100;
+            knight.attack = 1;
+            return knight;
+        }
+
         public Knight()
         {
+            id = counter;
+            counter++;
+
             hp = 100;
             attack = 10;
             Console.WriteLine("생성자 호출!");
-        }
-
-        public Knight(int hp) : this()
-        {
-            this.hp = hp;
-            Console.WriteLine("int 생성자 호출!");
-        }
-
-        public Knight(int hp, int attack)
-        {
-            this.hp = hp;
-            this.attack = attack;
-            Console.WriteLine("int, int 생성자 호출!");
         }
 
         public void Move()
@@ -57,7 +64,13 @@ namespace OOP
     {
         static void Main(string[] args)
         {
-            Knight knight = new Knight(50, 5);
+            Knight knight = Knight.CreateKnight();      // static
+            knight.Move();                              // 일반
+
+            Console.WriteLine();
+
+            Random rand = new Random();
+            rand.Next(0, 2);
         }
     }
 }
