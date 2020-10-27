@@ -27,14 +27,9 @@ namespace OOP
             Console.WriteLine("Player hp 생성자 호출!");
         }
 
-        public void Move()
+        public virtual void Move()
         {
-            Console.WriteLine("Knight Move");
-        }
-
-        public void Attack()
-        {
-            Console.WriteLine("Knight Attack");
+            Console.WriteLine("Player 이동!");
         }
     }
 
@@ -48,11 +43,32 @@ namespace OOP
             base.hp = 100;
             Console.WriteLine("Knight 생성자 호츨!");
         }
+
+        // overloading(함수 이름의 재사용)
+        // override(다형성에서 사용되는 문법, 어떤 함수에다가 실제 타입에 따라 작동)
+        public sealed override void Move()
+        {
+            base.Move();
+            Console.WriteLine("Knight 이동!");
+        }
+    }
+
+    class SuperKnight : Knight
+    {
+        //public override void Move()
+        //{
+        //    Console.WriteLine("SuperKnight 이동!");
+        //}
     }
 
     class Mage : Player       
     {
         public int mp;
+
+        public override void Move()
+        {
+            Console.WriteLine("Mage 이동!");
+        }
     }
 
     class Archer : Player
@@ -71,6 +87,8 @@ namespace OOP
             //    mage.mp = 10;
             //}
 
+            player.Move();
+
             Mage mage = (player as Mage);
             if (mage != null)
             {
@@ -84,7 +102,10 @@ namespace OOP
             Knight knight = new Knight();
             Mage mage = new Mage();
 
-            EnterGame(knight);
+            knight.Move();
+            mage.Move();
+
+            //EnterGame(knight);
         }
     }
 }
