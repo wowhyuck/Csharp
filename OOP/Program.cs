@@ -12,9 +12,9 @@ namespace OOP
         // 필드
         static public int counter = 1;        // 오로지 1개만 존재!
 
-        public int id;
-        public int hp;
-        public int attack;
+        protected int id;
+        protected int hp;
+        protected int attack;
 
         public Player()
         {
@@ -52,7 +52,7 @@ namespace OOP
 
     class Mage : Player       
     {
-
+        public int mp;
     }
 
     class Archer : Player
@@ -62,10 +62,29 @@ namespace OOP
 
     class Program
     {
+        static void EnterGame(Player player)
+        {
+            //bool isMage = (player is Mage);
+            //if(isMage)
+            //{
+            //    Mage mage = (Mage)player;
+            //    mage.mp = 10;
+            //}
+
+            Mage mage = (player as Mage);
+            if (mage != null)
+            {
+                mage.mp = 10;
+            }
+
+        }
+
         static void Main(string[] args)
         {
             Knight knight = new Knight();
-            knight.Move();
+            Mage mage = new Mage();
+
+            EnterGame(knight);
         }
     }
 }
