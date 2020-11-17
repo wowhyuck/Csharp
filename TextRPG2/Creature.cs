@@ -40,6 +40,5 @@ namespace TextRPG2
             if (hp < 0)
                 hp = 0;
         }
-
     }
 }

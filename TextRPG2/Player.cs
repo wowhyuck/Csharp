@@ -21,7 +21,6 @@ namespace TextRPG2
             this.type = type;
         }
 
-
         public PlayerType getPlayerType() { return type; }
     }
 
