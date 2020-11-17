@@ -28,7 +28,7 @@ namespace TextRPG2
     {
         public Slime() : base(MonsterType.Slime)
         {
-            setInfo(10, 1);
+            setInfo(10, 10);
         }
     }
 
@@ -36,7 +36,7 @@ namespace TextRPG2
     {
         public Orc() : base(MonsterType.Orc)
         {
-            setInfo(20, 1);
+            setInfo(20, 15);
         }
     }
 
@@ -44,7 +44,7 @@ namespace TextRPG2
     {
         public Skeleton() : base(MonsterType.Skeleton)
         {
-            setInfo(15, 5);
+            setInfo(15, 25);
         }
     }
 }
