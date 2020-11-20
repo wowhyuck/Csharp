@@ -4,76 +4,50 @@ namespace DataStructure
 {
     class Program
     {
-        static int GetHighestScore(int[] scores)
+        class Map
         {
-            int high_score = 0;
-            foreach(int score in scores)
+            int[,] tiles =
             {
-                if (high_score <= score)
-                    high_score = score;
-            }
+                { 1, 1, 1, 1, 1 },
+                { 1, 0, 0, 0, 1 },
+                { 1, 0, 0, 0, 1 },
+                { 1, 0, 0, 0, 1 },
+                { 1, 1, 1, 1, 1 },
+            };
 
-            return high_score;
-        }
-
-        static int GetAverageScore(int[] scores)
-        {
-            int sum = 0;
-            foreach (int score in scores)
+            public void Render()
             {
-                sum += score;
-            }
+                var defaultColor = Console.ForegroundColor;
 
-            if (scores.Length == 0)
-                return -1;
-
-            sum /= scores.Length;
-
-            return sum;
-        }
-
-        static int GetIndexOf(int[] scores, int value)
-        {
-            for (int i = 0; i < scores.Length; i++)
-            {
-                if (scores[i] == value)
-                    return i;
-            }
-
-            return -1;
-        }
-
-        static void Sort(int[] scores)
-        {
-            for (int i = 0; i < scores.Length; i++)
-            {
-                for (int j = i; j < scores.Length; j++)
+                for (int y = 0; y < tiles.GetLength(1); y++)
                 {
-                    if (scores[j] < scores[i])
+                    for (int x = 0; x < tiles.GetLength(0); x++)
                     {
-                        int temp = scores[i];
-                        scores[i] = scores[j];
-                        scores[j] = temp;
+                        if (tiles[y, x] == 1)
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        else
+                            Console.ForegroundColor = ConsoleColor.Green;
+
+                        Console.Write("\u25cf");
                     }
+                    Console.WriteLine();
                 }
-            }
-            foreach(int score in scores)
-            {
-                Console.WriteLine(score);
+                Console.ForegroundColor = defaultColor;
             }
         }
 
         static void Main(string[] args)
         {
-            // 배열
-            int[] scores = new int[5] { 10, 30, 40, 20 , 50};
-            int high_score = GetHighestScore(scores);
-            int avg_score = GetAverageScore(scores);
-            int idx_score = GetIndexOf(scores, 50);
-            Console.WriteLine(high_score);
-            Console.WriteLine(avg_score);
-            Console.WriteLine(idx_score);
-            Sort(scores);
+            Map map = new Map();
+            map.Render();
+
+            // 가변 배열
+            int[][] a = new int[3][];
+            a[0] = new int[3];
+            a[1] = new int[6];
+            a[2] = new int[2];
+
+            a[0][0] = 1;
         }
     }
 }
