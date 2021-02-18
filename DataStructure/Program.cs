@@ -3,37 +3,40 @@ using System.Collections.Generic;
 
 namespace DataStructure
 {
-    class Monster
-    {
-        public int id;
-
-        public Monster(int id) { this.id = id; }
-    }
-
     class Program
     {
+        class MyList<T> where T : Monster
+        {
+            T[] arr = new T[10];
+
+            public T GetItem(int i)
+            {
+                return arr[i];
+            }
+
+
+        }
+
+        class Monster
+        {
+
+        }
+
+        static void Test<T>(T input)
+        {
+
+        }
+
         static void Main(string[] args)
         {
-            List<int> list = new List<int>();
+            MyList<int> myIntList = new MyList<int>();
+            int item = myIntList.GetItem(0);
 
-            // HashTable
-            // 메모리 손해
-            // [메모리를 내주고, 성능을 취한다]
+            MyList<short> myShortList = new MyList<short>();
+            MyList<Monster> myMonsterList = new MyList<Monster>();
 
-            // Key -> Value
-            // Dictionary
-            Dictionary<int, Monster> dic = new Dictionary<int, Monster>();
-
-            for(int i=0; i<10000; i++)
-            {
-                dic.Add(i, new Monster(i));
-            }
-            
-            Monster mon;
-            bool found = dic.TryGetValue(20000, out mon);
-
-            dic.Remove(7777);
-            dic.Clear();
+            Test<int>(3);
+            Test<float>(3.0f);
         }
     }
 }
