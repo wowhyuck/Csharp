@@ -5,38 +5,41 @@ namespace DataStructure
 {
     class Program
     {
-        class MyList<T> where T : Monster
+        abstract class Monster
         {
-            T[] arr = new T[10];
+            public abstract void Shout();
+        }
 
-            public T GetItem(int i)
+        interface IFlyable
+        {
+            void Fly();
+        }
+
+        class Orc : Monster
+        {
+            public override void Shout()
             {
-                return arr[i];
+                Console.WriteLine("록타르 오가르");
             }
-
-
         }
 
-        class Monster
+        class FlyableOrc : Orc, IFlyable
         {
+            public void Fly()
+            {
 
+            }
         }
 
-        static void Test<T>(T input)
+        static void DoFly(IFlyable flyable)
         {
-
+            flyable.Fly();
         }
 
         static void Main(string[] args)
         {
-            MyList<int> myIntList = new MyList<int>();
-            int item = myIntList.GetItem(0);
-
-            MyList<short> myShortList = new MyList<short>();
-            MyList<Monster> myMonsterList = new MyList<Monster>();
-
-            Test<int>(3);
-            Test<float>(3.0f);
+            FlyableOrc orc = new FlyableOrc();
+            DoFly(orc);
         }
     }
 }
