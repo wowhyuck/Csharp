@@ -5,41 +5,40 @@ namespace DataStructure
 {
     class Program
     {
-        abstract class Monster
+        // 객체지향 -> 은닉성
+        class Knight
         {
-            public abstract void Shout();
-        }
+            protected int hp;
 
-        interface IFlyable
-        {
-            void Fly();
-        }
+            //public int Hp
+            //{
+            //    get { return hp; }
+            //    private set { hp = value; }
+            //}
 
-        class Orc : Monster
-        {
-            public override void Shout()
+            public int Hp
             {
-                Console.WriteLine("록타르 오가르");
+                get; set;
             }
-        }
 
-        class FlyableOrc : Orc, IFlyable
-        {
-            public void Fly()
-            {
+            // ==
+            //private int _hp;
+            //public int GetHp() { return _hp; }
+            //public void SetHp(int value) { _hp = value; }
 
-            }
-        }
-
-        static void DoFly(IFlyable flyable)
-        {
-            flyable.Fly();
+            public int GetHp() { return hp; }               // Getter, Get 함수
+            public void SetHp(int hp) { this.hp = hp; }     // Setter, Set 함수
         }
 
         static void Main(string[] args)
         {
-            FlyableOrc orc = new FlyableOrc();
-            DoFly(orc);
+            // 프로퍼티
+            Knight knight = new Knight();
+            knight.SetHp(100);
+
+            knight.Hp = 100;
+
+            int hp = knight.Hp;
         }
     }
 }
