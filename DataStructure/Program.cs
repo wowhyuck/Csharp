@@ -5,40 +5,41 @@ namespace DataStructure
 {
     class Program
     {
-        // 객체지향 -> 은닉성
-        class Knight
+        delegate int OnClicked();
+        // delegate -> 형식은 형식인데, 함수 자체를 인자로 넘겨주는 형식
+        // 반환: int, 입력: void
+        // OnClicked이 delegate 형식의 이름이다.
+
+        // UI
+        static void ButtonPressed(OnClicked clickedFunction /* 함수 자체를 인자로 넘겨주고 */)
         {
-            protected int hp;
+            // 함수를 호출();
+            clickedFunction();
+        }
 
-            //public int Hp
-            //{
-            //    get { return hp; }
-            //    private set { hp = value; }
-            //}
-
-            public int Hp
-            {
-                get; set;
-            }
-
-            // ==
-            //private int _hp;
-            //public int GetHp() { return _hp; }
-            //public void SetHp(int value) { _hp = value; }
-
-            public int GetHp() { return hp; }               // Getter, Get 함수
-            public void SetHp(int hp) { this.hp = hp; }     // Setter, Set 함수
+        static int TestDelegate()
+        {
+            Console.WriteLine("Hello, delegate");
+            return 0;
+        }
+        static int TestDelegate2()
+        {
+            Console.WriteLine("Hello, delegate2");
+            return 0;
         }
 
         static void Main(string[] args)
         {
-            // 프로퍼티
-            Knight knight = new Knight();
-            knight.SetHp(100);
+            // delegate (대리자)
+            Console.WriteLine();
 
-            knight.Hp = 100;
+            ButtonPressed(TestDelegate);
 
-            int hp = knight.Hp;
+            // delegate chaining
+            OnClicked clicked = new OnClicked(TestDelegate);
+            clicked += TestDelegate2;
+
+            ButtonPressed(clicked);
         }
     }
 }
