@@ -6,48 +6,50 @@ namespace DataStructure
 {
     class Program
     {
-        class Important : System.Attribute
+        static int Find()
         {
-            string message;
-
-            public Important(string message) { this.message = message; }
+            return 0;
         }
 
         class Monster
         {
-            // hp입니다. 중요한 정보입니다.
-            [Important("Very Important")]
-
-            public int hp;
-            protected int attack;
-            private float speed;
-
-            void Attack() { }
+            public int Id { get; set; }
         }
 
         static void Main(string[] args)
         {
-            // Reflection : X-ray
-            Monster monster = new Monster();
+            // Nullable -> Null + able
+            int? number = null;
+            number = 3;
+            int a;
 
-            Type type = monster.GetType();
-            var fields = type.GetFields(System.Reflection.BindingFlags.Public |
-                System.Reflection.BindingFlags.NonPublic |
-                System.Reflection.BindingFlags.Static |
-                System.Reflection.BindingFlags.Instance);
-
-            foreach(FieldInfo field in fields)
+            if (number != null)
             {
-                string access = "protected";
-                if (field.IsPublic)
-                    access = "public";
-                else if (field.IsPrivate)
-                    access = "private";
-
-                var attributes = field.GetCustomAttributes();
-
-                Console.WriteLine($"{access} {field.FieldType.Name} {field.Name}");
+                a = number.Value;
+                Console.WriteLine(a);
             }
+
+            if(number.HasValue)
+            {
+                a = number.Value;
+                Console.WriteLine(a);
+            }
+
+            // ==
+            int b = number ?? 0;        // number가 null이 아니면 가지고 있는 value 대입, null이면 0으로 초기화
+            Console.WriteLine(b);
+
+            /* --------------------------------------------- */
+
+            Monster monster = null;
+
+            if (monster != null)
+            {
+                int monsterId = monster.Id;
+            }
+
+            // ==
+            int? id = monster?.Id;      // Nullable -> 형식?, null이면 null로 반환, null이 아니면 해당 값 반환
         }
     }
 }
